@@ -20,7 +20,7 @@ app.get('/api/rate', async (req, res) => {
     console.log(html); // Log the HTML response for debugging
 
     // Updated regex to match the new structure
-    const regex = /<div class="col-sm-6 col-xs-6 centrado">\s*<strong>([\d.,]+)<\/strong>/;
+    const regex = /<div class="col-sm-6 col-xs-6 centrado">\s*<strong>\s*([\d.,]+)\s*<\/strong>/;
     const match = html.match(regex);
 
     if (!match) throw new Error("No se pudo extraer la tasa BCV");
