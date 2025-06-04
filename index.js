@@ -17,7 +17,8 @@ app.get('/api/rate', async (req, res) => {
     const response = await fetch(BCV_URL, { agent }); // Use the agent here
     const html = await response.text();
 
-    const regex = /Dólar estadounidense<\/strong><\/td>\s*<td[^>]*>([\d,]+)<\/td>/;
+    // Updated regex to match the new structure
+    const regex = /<div class="col-sm-6 col-xs-6 centrado">\s*<strong>([\d.,]+)<\/strong>/;
     const match = html.match(regex);
 
     if (!match) throw new Error("No se pudo extraer la tasa BCV");
