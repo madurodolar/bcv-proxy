@@ -1,14 +1,20 @@
 import express from 'express';
 import fetch from 'node-fetch';
+import https from 'https';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 const BCV_URL = 'https://www.bcv.org.ve/';
 
+// Create an HTTPS agent to disable SSL verification
+const agent = new https.Agent({
+  rejectUnauthorized: false, // Disable SSL verification
+});
+
 app.get('/api/rate', async (req, res) => {
   try {
-    const response = await fetch(BCV_URL);
+    const response = await fetch(BCV_URL, { agent }); // Use the agent here
     const html = await response.text();
 
     const regex = /Dólar estadounidense<\/strong><\/td>\s*<td[^>]*>([\d,]+)<\/td>/;
