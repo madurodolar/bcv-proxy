@@ -22,6 +22,6 @@ app.get('/api/rate', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`BCV proxy running on port ${PORT}`);
 });
