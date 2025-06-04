@@ -17,6 +17,8 @@ app.get('/api/rate', async (req, res) => {
     const response = await fetch(BCV_URL, { agent }); // Use the agent here
     const html = await response.text();
 
+    console.log(html); // Log the HTML response for debugging
+
     // Updated regex to match the new structure
     const regex = /<div class="col-sm-6 col-xs-6 centrado">\s*<strong>([\d.,]+)<\/strong>/;
     const match = html.match(regex);
